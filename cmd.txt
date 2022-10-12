@@ -8,11 +8,28 @@ gcloud storage buckets create gs://page-rank-bucket --project=projet-pascal-de-o
 gsutil cp large_scale_data_management/small_page_links.nt gs://page-rank-bucket/
 
 // Copie du code pig
+gsutil cp -r large_scale_data_management/1worker/ gs://page-rank-bucket/
 gsutil cp -r large_scale_data_management/2worker/ gs://page-rank-bucket/
 gsutil cp -r large_scale_data_management/4worker/ gs://page-rank-bucket/
 
 // Copie du code spark
 gsutil cp -r large_scale_data_management/pyspark/pagerank-notype.py gs://page-rank-bucket/
+
+// Création des cluster 1 worker
+gcloud dataproc clusters create cluster-1-pig --enable-component-gateway --region europe-west1 --zone europe-west1-c --master-machine-type n1-standard-4 --master-boot-disk-size 500 --single-node --worker-machine-type n1-standard-4 --worker-boot-disk-size 500 --image-version 2.0-debian10 --project projet-pascal-de-ouf
+gcloud dataproc clusters create cluster-1-spark --enable-component-gateway --region europe-west1 --zone europe-west1-c --master-machine-type n1-standard-4 --master-boot-disk-size 500 --single-node --worker-machine-type n1-standard-4 --worker-boot-disk-size 500 --image-version 2.0-debian10 --project projet-pascal-de-ouf
+
+// Calcul page rank pig 1 worker
+gcloud dataproc jobs submit pig --region europe-west1 --cluster cluster-1-pig -f gs://page-rank-bucket/1worker/dataproc.py
+
+// Calcul page rank spark 1 worker
+gcloud dataproc jobs submit pyspark --region europe-west1 --cluster cluster-1-spark gs://page-rank-bucket/pagerank-notype.py  -- gs://page-rank-bucket/small_page_links.nt 3 gs://page-rank-bucket/out1worker/spark/pagerank_data_simple
+
+// Suppression des cluster 1 worker
+gcloud dataproc clusters delete cluster-1-pig --region europe-west1
+gcloud dataproc clusters delete cluster-1-spark --region europe-west1
+
+---------------------------------------------------------------------
 
 // Création des cluster 2 worker
 gcloud dataproc clusters create cluster-2-pig --enable-component-gateway --region europe-west1 --zone europe-west1-c --master-machine-type n1-standard-4 --master-boot-disk-size 500 --num-workers 2 --worker-machine-type n1-standard-4 --worker-boot-disk-size 500 --image-version 2.0-debian10 --project projet-pascal-de-ouf
@@ -27,6 +44,8 @@ gcloud dataproc jobs submit pyspark --region europe-west1 --cluster cluster-2-sp
 // Suppression des cluster 2 worker
 gcloud dataproc clusters delete cluster-2-pig --region europe-west1
 gcloud dataproc clusters delete cluster-2-spark --region europe-west1
+
+---------------------------------------------------------------------
 
 // Création des cluster 4 worker
 gcloud dataproc clusters create cluster-4-pig --enable-component-gateway --region europe-west1 --zone europe-west1-c --master-machine-type n1-standard-4 --master-boot-disk-size 500 --num-workers 4 --worker-machine-type n1-standard-4 --worker-boot-disk-size 500 --image-version 2.0-debian10 --project projet-pascal-de-ouf
