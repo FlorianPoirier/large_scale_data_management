@@ -15,6 +15,8 @@ gsutil cp -r large_scale_data_management/4worker/ gs://page-rank-bucket/
 // Copie du code spark
 gsutil cp -r large_scale_data_management/pyspark/pagerank-notype.py gs://page-rank-bucket/
 
+--------------------------------------------------------------------
+
 // Création des cluster 1 worker
 gcloud dataproc clusters create cluster-1-pig --enable-component-gateway --region europe-west1 --zone europe-west1-c --master-machine-type n1-standard-4 --master-boot-disk-size 500 --single-node --worker-machine-type n1-standard-4 --worker-boot-disk-size 500 --image-version 2.0-debian10 --project projet-pascal-de-ouf
 gcloud dataproc clusters create cluster-1-spark --enable-component-gateway --region europe-west1 --zone europe-west1-c --master-machine-type n1-standard-4 --master-boot-disk-size 500 --single-node --worker-machine-type n1-standard-4 --worker-boot-disk-size 500 --image-version 2.0-debian10 --project projet-pascal-de-ouf
