@@ -84,7 +84,9 @@ if __name__ == "__main__":
 
         # Re-calculates URL ranks based on neighbor contributions.
         ranks = contribs.reduceByKey(add).mapValues(lambda rank: rank * 0.85 + 0.15)
-
+    
+    ranks.saveAsTextFile(sys.argv[3])
+    
     # Collects all URL ranks and dump them to console.
     for (link, rank) in ranks.collect():
         print("%s has rank: %s." % (link, rank))
