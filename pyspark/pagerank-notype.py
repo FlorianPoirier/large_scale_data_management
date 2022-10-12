@@ -89,8 +89,8 @@ if __name__ == "__main__":
     ranks.saveAsTextFile(sys.argv[3])
     
     # Collects all URL ranks and dump them to console.
-    for (link, rank) in ranks.collect():
-        print("%s has rank: %s." % (link, rank))
+    #for (link, rank) in ranks.collect():
+    #    print("%s has rank: %s." % (link, rank))
     
     startTime = spark.sparkContext.startTime
     endTime = time.time()
