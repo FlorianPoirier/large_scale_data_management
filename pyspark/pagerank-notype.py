@@ -91,5 +91,11 @@ if __name__ == "__main__":
     # Collects all URL ranks and dump them to console.
     for (link, rank) in ranks.collect():
         print("%s has rank: %s." % (link, rank))
+    
+    startTime = spark.sparkContext.startTime
+    endTime = time.time()
+    print("Job take %s seconds (StartTime : %s, CurrentTime : %s)" %
+          ((endTime - startTime), startTime, endTime))
+
 
     spark.stop()
