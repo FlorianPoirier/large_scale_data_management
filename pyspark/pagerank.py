@@ -89,7 +89,7 @@ if __name__ == "__main__":
     #for (link, rank) in ranks.collect():
     #    print("%s has rank: %s." % (link, rank))
     
-    startTime = spark.sparkContext.startTime
+    startTime = (spark.sparkContext.startTime)/1000
     endTime = time.time()
     print("Job take %s seconds (StartTime : %s, CurrentTime : %s)" %
           ((endTime - startTime), startTime, endTime))
