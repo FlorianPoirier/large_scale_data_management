@@ -5,7 +5,7 @@ git clone https://github.com/FlorianPoirier/large_scale_data_management.git
 gcloud storage buckets create gs://page-rank-bucket --project=projet-pascal-de-ouf  --location=europe-west1 --uniform-bucket-level-access
 
 // Copie les données
-gsutil cp large_scale_data_management/small_page_links.nt gs://page-rank-bucket/
+gsutil cp gs://public_lddm_data/page_links_en.nt.bz2 gs://page-rank-bucket/
 
 // Copie du code pig
 gsutil cp -r large_scale_data_management/1worker/ gs://page-rank-bucket/
