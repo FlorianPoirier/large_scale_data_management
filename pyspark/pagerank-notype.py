@@ -59,14 +59,14 @@ if __name__ == "__main__":
 
     # Initialize the spark context.
     spark = SparkSession\
+        .builder\
+        .appName("PythonPageRank")\
+        .config("spark.yarn.historyServer.allowTracking", "true")\
         .config("spark.ui.showConsoleProgress", "true")\
         .config("spark.yarn.historyServer.allowTracking", "true")\
         .config("spark.executor.heartbeatInterval", "86400")\
         .config("spark.network.timeout", "86400")\
         .config("spark.dynamicAllocation.executorIdleTimeout", "86400")\
-        .builder\
-        .appName("PythonPageRank")\
-        .config("spark.yarn.historyServer.allowTracking", "true")\
         .getOrCreate()
 
     # Loads in input file. It should be in format of:
