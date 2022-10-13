@@ -35,14 +35,14 @@ STORE new_pagerank
     USING PigStorage('\t');
 """)
 
-params = { 'd': '0.85', 'docs_in': 'gs://page-rank-bucket/out2worker/pig/pagerank_data_simple' } #modified param from 0.5 to 0.85
+params = { 'd': '0.85', 'docs_in': 'gs://page-rank-bucket/out2worker/pigBigData/pagerank_data_simple' } #modified param from 0.5 to 0.85
 
 stats = INIT.bind(params).runSingle()
 if not stats.isSuccessful():
       raise 'failed initialization'
 
 for i in range(3):
-   out = "gs://page-rank-bucket/out2worker/pig/pagerank_data_" + str(i + 1)
+   out = "gs://page-rank-bucket/out2worker/pigBigData/pagerank_data_" + str(i + 1)
    params["docs_out"] = out
    Pig.fs("rmr " + out)
    stats = UPDATE.bind(params).runSingle()
