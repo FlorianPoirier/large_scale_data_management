@@ -27,6 +27,9 @@ gcloud dataproc jobs submit pig --region europe-west1 --cluster cluster-1-pig -f
 // Calcul page rank spark 1 worker
 gcloud dataproc jobs submit pyspark --region europe-west1 --cluster cluster-1-spark gs://page-rank-bucket/pagerank-notype.py  -- gs://page-rank-bucket/small_page_links.nt 3 gs://page-rank-bucket/out1worker/spark/pagerank_data_simple
 
+// Calcul page rank spark 1 worker big data
+gcloud dataproc jobs submit pyspark --region europe-west1 --cluster cluster-1-spark gs://page-rank-bucket/pagerank-notype.py  -- gs://public_lddm_data/page_links_en.nt.bz2 3 gs://page-rank-bucket/out1worker/spark/pagerank_data_simple
+
 // Suppression des cluster 1 worker
 gcloud dataproc clusters delete cluster-1-pig --region europe-west1
 gcloud dataproc clusters delete cluster-1-spark --region europe-west1
@@ -43,6 +46,9 @@ gcloud dataproc jobs submit pig --region europe-west1 --cluster cluster-2-pig -f
 // Calcul page rank spark 2 worker
 gcloud dataproc jobs submit pyspark --region europe-west1 --cluster cluster-2-spark gs://page-rank-bucket/pagerank-notype.py  -- gs://page-rank-bucket/small_page_links.nt 3 gs://page-rank-bucket/out2worker/spark/pagerank_data_simple
 
+// Calcul page rank spark 2 worker big data
+gcloud dataproc jobs submit pyspark --region europe-west1 --cluster cluster-2-spark gs://page-rank-bucket/pagerank-notype.py  -- gs://public_lddm_data/page_links_en.nt.bz2 3 gs://page-rank-bucket/out2worker/spark/pagerank_data_simple
+
 // Suppression des cluster 2 worker
 gcloud dataproc clusters delete cluster-2-pig --region europe-west1
 gcloud dataproc clusters delete cluster-2-spark --region europe-west1
@@ -58,6 +64,9 @@ gcloud dataproc jobs submit pig --region europe-west1 --cluster cluster-4-pig -f
 
 // Calcul page rank spark 4 worker
 gcloud dataproc jobs submit pyspark --region europe-west1 --cluster cluster-4-spark gs://page-rank-bucket/pagerank-notype.py  -- gs://page-rank-bucket/small_page_links.nt 3 gs://page-rank-bucket/out4worker/spark/pagerank_data_simple
+
+// Calcul page rank spark 4 worker big data
+gcloud dataproc jobs submit pyspark --region europe-west1 --cluster cluster-4-spark gs://page-rank-bucket/pagerank-notype.py  -- gs://public_lddm_data/page_links_en.nt.bz2 3 gs://page-rank-bucket/out4worker/spark/pagerank_data_simple
 
 // Suppression des cluster 4 worker
 gcloud dataproc clusters delete cluster-4-pig --region europe-west1
