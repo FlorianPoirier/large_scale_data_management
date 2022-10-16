@@ -104,7 +104,7 @@ if __name__ == "__main__":
     startTime = (spark.sparkContext.startTime)/1000
     endTime = time.time()
     print("Job take %s seconds" %
-          ((endTime - startTime), startTime, endTime))
+          (endTime - startTime))
 
 
     spark.stop()
