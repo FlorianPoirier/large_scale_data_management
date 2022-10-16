@@ -10,7 +10,7 @@ BOIS Jean-Maël
 
 See `cmd.txt` file
 
-Spark is launch with partitionned data by default. If you want to launch with unpartitionned data, put lines 84, 85 and 86 as comments.
+Spark is launched with partitionned data by default. If you want to launch with unpartitionned data, put lines 84, 85 and 86 as comments.
 
 ## Results
 
