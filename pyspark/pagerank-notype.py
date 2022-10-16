@@ -80,9 +80,10 @@ if __name__ == "__main__":
     # Loads all URLs with other URL(s) link to from input file and initialize ranks of them to one.
     ranks = links.map(lambda url_neighbors: (url_neighbors[0], 1.0))
 
-    lines.partitionBy(None).glom()
-    links.partitionBy(None).glom()
-    ranks.partitionBy(None).glom()
+    #Put these 3 lines to prevent partitionning
+    lines = lines.partitionBy(None).glom()
+    links = links.partitionBy(None).glom()
+    ranks = ranks.partitionBy(None).glom()
 
     # Calculates and updates URL ranks continuously using PageRank algorithm.
     for iteration in range(int(sys.argv[2])):
@@ -102,7 +103,7 @@ if __name__ == "__main__":
     
     startTime = (spark.sparkContext.startTime)/1000
     endTime = time.time()
-    print("Job take %s seconds (StartTime : %s, CurrentTime : %s)" %
+    print("Job take %s seconds" %
           ((endTime - startTime), startTime, endTime))
 
 
