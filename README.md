@@ -14,9 +14,9 @@ Spark is launched with partitionned data by default. If you want to launch with 
 
 ## Results
 
-We decided to make 3 runs for each node in order to have a accurate benchmark possible for the page_links_en.nt.bz2 file.
+We decided to make 3 runs for each node in order to have an accurate benchmark for the page_links_en.nt.bz2 file.
 
-In the following table, we have the results for small_page_links.nt data file and page_links_en.nt.bz2 (with and without partitionning).
+In the following table, we have results for small_page_links.nt data file and page_links_en.nt.bz2 (with and without partitionning).
 
 ![](result/results.png)
 
