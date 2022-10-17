@@ -18,13 +18,13 @@ We decided to make 3 runs for each node in order to have a accurate benchmark po
 
 In the following table, we have the results for small_page_links.nt data file and page_links_en.nt.bz2 (with and without partitionning).
 
-![](result/result.png)
+![](result/results.png)
 
 The capacity allocated to the machines was not sufficient to allow execution on a Spark node.
 
 We have made a graph to visualize the average execution time for each node. 
 
-![](result/graphResult.png)
+![](result/graphResults.png)
 
 
 
