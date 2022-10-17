@@ -20,7 +20,7 @@ In the following table, we have results for small_page_links.nt data file and pa
 
 ![](result/results.png)
 
-The capacity allocated to the machines was not sufficient to allow execution on a Spark node.
+The capacity allocated to the machines was not sufficient to allow execution on a single Spark node.
 
 We have made a graph to visualize the average execution time for each node. 
 
