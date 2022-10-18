@@ -102,7 +102,7 @@ if __name__ == "__main__":
     #    print("%s has rank: %s." % (link, rank))
     
     # Print max rank
-    print("Max rank : %s (%s)" % ranks.max(key=lambda ranking: ranking[1]))
+    print("Max rank : %s (%s)" % ranks.max(key=lambda rank_tuple: rank_tuple[1]))
     
     startTime = (spark.sparkContext.startTime)/1000
     endTime = time.time()
