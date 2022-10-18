@@ -101,6 +101,9 @@ if __name__ == "__main__":
     #for (link, rank) in ranks.collect():
     #    print("%s has rank: %s." % (link, rank))
     
+    # Print max rank
+    print("Max rank : %s (%s)" % ranks.max(key=lambda rank_tuple: rank_tuple[1]))
+    
     startTime = (spark.sparkContext.startTime)/1000
     endTime = time.time()
     print("Job take %s seconds" %
