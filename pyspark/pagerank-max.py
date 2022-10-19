@@ -18,13 +18,11 @@
 """
 This is an example implementation of PageRank. For more conventional use,
 Please refer to PageRank implementation provided by graphx
-
 Example Usage:
 bin/spark-submit examples/src/main/python/pagerank.py data/mllib/pagerank_data.txt 10
 """
 import re
 import sys
-import time
 from operator import add
 from typing import Iterable, Tuple
 
@@ -49,8 +47,8 @@ def parseNeighbors(urls) :
 
 
 if __name__ == "__main__":
-    if len(sys.argv) != 4:
-        print("Usage: pagerank <file> <iterations> <outfile>", file=sys.stderr)
+    if len(sys.argv) != 3:
+        print("Usage: pagerank <file> <iterations>", file=sys.stderr)
         sys.exit(-1)
 
     print("WARN: This is a naive implementation of PageRank and is given as an example!\n" +
@@ -80,11 +78,6 @@ if __name__ == "__main__":
     # Loads all URLs with other URL(s) link to from input file and initialize ranks of them to one.
     ranks = links.map(lambda url_neighbors: (url_neighbors[0], 1.0))
 
-    #Put these 3 lines to prevent partitionning
-    lines = lines.partitionBy(None).glom()
-    links = links.partitionBy(None).glom()
-    ranks = ranks.partitionBy(None).glom()
-
     # Calculates and updates URL ranks continuously using PageRank algorithm.
     for iteration in range(int(sys.argv[2])):
         # Calculates URL contributions to the rank of other URLs.
@@ -95,11 +88,11 @@ if __name__ == "__main__":
         # Re-calculates URL ranks based on neighbor contributions.
         ranks = contribs.reduceByKey(add).mapValues(lambda rank: rank * 0.85 + 0.15)
     
-    ranks.saveAsTextFile(sys.argv[3])
+    # Print max rank
+    print("Max rank : %s (%s)" % ranks.max(key=lambda rank_tuple: rank_tuple[1]))
     
     startTime = (spark.sparkContext.startTime)/1000
     endTime = time.time()
     print("Job take %s seconds" % (endTime - startTime))
 
     spark.stop()
-    
