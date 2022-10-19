@@ -23,6 +23,7 @@ bin/spark-submit examples/src/main/python/pagerank.py data/mllib/pagerank_data.t
 """
 import re
 import sys
+import time
 from operator import add
 from typing import Iterable, Tuple
 
