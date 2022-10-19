@@ -26,6 +26,7 @@ We have made a graph to visualize the average execution time for each node.
 
 ![](result/graphResults.png)
 
+Then, we calculated the best ranking among all the pages. The max rank is `http://dbpedia.org/resource/Living_people` with a score of 36794.33146754496. 
 
 
 ## Conclusion
