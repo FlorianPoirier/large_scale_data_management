@@ -1,6 +1,6 @@
 # Large Scale Data Management
 
-## Authors
+## Contributors
 
 POIRIER Florian\
 FORTINEAU Romain\
